@@ -1,0 +1,19 @@
+#map {
+  height: calc(100vh - 50px);
+  width: 100%;
+}
+
+.search-bar {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  color: white;
+  align-items: center;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 6px;
+  border-radius: 6px;
+  border: none;
+}
