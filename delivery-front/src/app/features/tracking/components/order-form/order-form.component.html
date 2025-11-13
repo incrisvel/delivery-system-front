@@ -1,0 +1,27 @@
+<div class="order-form">
+    <h3>Criar Pedido</h3>
+
+    <form (ngSubmit)="submitOrder()">
+      <div>
+        <label>Restaurante</label>
+        <input type="text" [value]="selectedRestaurant?.name" readonly />
+      </div>
+
+      <div>
+        <label>Latitude</label>
+        <input type="text" [value]="selectedRestaurant?.lat" readonly />
+      </div>
+
+      <div>
+        <label>Longitude</label>
+        <input type="text" [value]="selectedRestaurant?.lng" readonly />
+      </div>
+
+      <div>
+        <label>Descrição do Pedido</label>
+        <textarea [(ngModel)]="order.description" name="description"></textarea>
+      </div>
+
+      <button type="submit" [disabled]="!selectedRestaurant">Enviar Pedido</button>
+    </form>
+</div>

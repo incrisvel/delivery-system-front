@@ -1,6 +1,14 @@
-<div class="search-bar">
-  <input [(ngModel)]="query" placeholder="Buscar endereço..." />
-  <button (click)="onSearch()">Buscar</button>
-</div>
+<div class="order-page-container">
+    <app-order-form></app-order-form>
 
-<div id="map"></div>
+    <!-- Modal de carregamento -->
+    <div class="loading-overlay" *ngIf="isLoading">
+    <div class="loading-box">
+        <div class="spinner"></div>
+        <p>{{ loadingMessage }}</p>
+    </div>
+    </div>
+
+    <!-- Conteúdo principal -->
+    <div id="map"></div>
+</div>
