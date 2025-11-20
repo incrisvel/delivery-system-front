@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { TRACKING_ROUTES } from './features/tracking/tracking.routes';
+import { ORDER_ROUTES } from './features/orders/order.routes';
 
 export const routes: Routes = [
-    ...TRACKING_ROUTES,
-    { path: '', redirectTo: 'order-tracking', pathMatch: 'full' },
+    ...ORDER_ROUTES,
+    { path: '', redirectTo: 'order-order', pathMatch: 'full' },
 ];

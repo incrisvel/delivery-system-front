@@ -3,7 +3,6 @@ export interface Dish {
     name: string;
     description: string;
     price: number;
+    image?: string;
     establishment_id: number;
-    quantity?: number;
-    total?: number;
 }
