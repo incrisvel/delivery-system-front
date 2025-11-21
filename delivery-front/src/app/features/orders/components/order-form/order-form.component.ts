@@ -1,10 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, Input, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Establishment } from '../../models/establishment.model';
 import { EstablishmentService } from '../../services/establishment.service';
-import { Dish, Order, OrderItem } from '../../models';
-import { getStars } from '../../utils/rating.utils';
+import { Order } from '../../models';
 import { OrderStore } from '../../state/order.store';
 
 @Component({
@@ -15,13 +13,18 @@ import { OrderStore } from '../../state/order.store';
   styleUrl: './order-form.component.scss',
 })
 export class OrderFormComponent {
-  constructor(public order: OrderStore) {}
+  constructor(
+    public order: OrderStore,
+    private establishmentService: EstablishmentService
+  ) {}
 
   onCreateOrder() {
-    console.log("Pedido confirmado:", {
-      establishment: this.order.establishment(),
+    const order: Order = {
+      client: 'Sofia',
+      establishment_id: this.order.establishment()?.id!,
       items: this.order.selectedItems(),
-      total: this.order.totalPrice()
-    });
+      total: this.order.totalPrice(),
+    }
+    this.establishmentService.createOrder(order).subscribe(order => console.log('Pedido confirmado!', order));
   }
 }

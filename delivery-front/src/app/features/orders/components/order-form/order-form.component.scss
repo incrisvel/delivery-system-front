@@ -1,10 +1,15 @@
 .order-card {
-  min-width: 450px;
-  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 500px;
+  max-width: 500px;
+  max-height: 90vh;
   background: var(--bg-color);
-  border-radius: 18px;
+  border-radius: var(--card-radius);
   padding: 16px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  overflow: hidden;
 }
 
 .establishment-img {
@@ -16,6 +21,14 @@
 }
 
 .establishment {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  h2 {
+    margin-block: 8px;
+  }
+
   &__address {
     display: flex;
     align-items: center;
@@ -44,10 +57,18 @@
   }
 }
 
+
 form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
+  min-height: 0;
+}
+
+.dishes {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 6px;
 }
 
 .dish-item {
@@ -55,6 +76,13 @@ form {
   justify-content: space-between;
   padding: 8px;
   border-radius: 8px;
+
+  .dish-img {
+    height: 60px;
+    width: 60px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
 
   .dish-info {
     width: 80%;
@@ -64,6 +92,8 @@ form {
     }
 
     &__desc {
+      font-size: 14px;
+      padding-top: 8px;
       opacity: 0.5;
     }
   }

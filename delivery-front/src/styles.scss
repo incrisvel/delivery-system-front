@@ -1,6 +1,7 @@
 * {
   font-family: 'Montserrat', sans-serif;
   color: var(--text-color);
+  margin: 0;
 }
 
 body {
@@ -11,12 +12,13 @@ body {
 }
 
 :root {
+  --primary-color: #8201eb;
+  --card-radius: 18px;
   --bg-color: rgb(24, 25, 26);
   --text-color: white;
   --text-color-10: rgba(255, 255, 255, 0.1);
   --text-color-20: rgba(255, 255, 255, 0.2);
   --text-color-30: rgba(255, 255, 255, 0.3);
-  --primary-color: rgb(130, 1, 235);
 }
 
 

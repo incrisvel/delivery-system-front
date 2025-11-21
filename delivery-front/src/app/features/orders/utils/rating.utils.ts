@@ -1,18 +1,12 @@
 import { IconOptions } from "leaflet";
 
-export function getStars(rating: number): string[] {
-  const stars: string[] = [];
-  
-  for (let i = 1; i <= 5; i++) {
-    if (rating >= i) {
-      stars.push('star');
-    } else if (rating >= i - 0.5) {
-      stars.push('star_half');
-    } else {
-      stars.push('star_border');
-    }
-  }
-  return stars;
+export function getStars(rating: number): { icon: string, filled: boolean }[] {
+  return Array.from({ length: 5 }, (_, i) => {
+    const index = i + 1;
+    if (rating >= index) return { icon: 'star', filled: true };
+    if (rating >= index - 0.5) return { icon: 'star_half', filled: true };
+    return { icon: 'star', filled: false };
+});
 }
 
 export function getMarkerIconOptions(iconPath: string): IconOptions {

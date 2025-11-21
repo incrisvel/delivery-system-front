@@ -1,13 +1,13 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Dish } from "../models/dish.model";
-import { Establishment } from "../models";
+import { Establishment, Order } from "../models";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EstablishmentService {
-  private baseUrl = 'http://bore.pub:19783';
+  private baseUrl = 'http://localhost:8000';
 
   constructor(private http: HttpClient) {}
 
@@ -17,5 +17,9 @@ export class EstablishmentService {
 
   getDishes(establishmentId: number) {
     return this.http.get<Dish[]>(`${this.baseUrl}/dishes?establishment_id=${establishmentId}`);
+  }
+
+  createOrder(order: Order) {
+    return this.http.post<Order>(`${this.baseUrl}/orders`, order);
   }
 }

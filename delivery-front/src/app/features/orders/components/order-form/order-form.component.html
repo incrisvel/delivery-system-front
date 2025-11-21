@@ -10,11 +10,12 @@
     <div class="establishment__rating">
       <span class="stars">
         <span
-        class="material-symbols-outlined star"
-        *ngFor="let star of order.stars()"
-        [class.filled]="star.filled"
-        [class.empty]="!star.filled"
-        >{{ star.icon }}</span>
+          class="material-symbols-outlined star"
+          *ngFor="let star of order.stars()"
+          [class.filled]="star.filled"
+          [class.empty]="!star.filled"
+          >{{ star.icon }}</span
+        >
       </span>
       <span>{{ order.establishment()?.rating ?? 0 }}</span>
     </div>
@@ -29,38 +30,49 @@
     <h3>Cardápio</h3>
 
     <form (ngSubmit)="onCreateOrder()">
-      <div *ngFor="let item of order.items() | keyvalue" class="dish-item">
-        <label>
-          <input
-            type="checkbox"
-            [checked]="item.value.quantity > 0"
-            (change)="order.toggleDish(item.value.dish)"
-          />
-          <div class="dish-info">
-            <div class="dish-info__title">{{ item.value.dish.name }}</div>
-            <span class="dish-info__desc">{{ item.value.dish.description }}</span>
-          </div>
-        </label>
+      <div class="dishes">
+        <div *ngFor="let item of order.items() | keyvalue" class="dish-item">
+          <label>
+            <input
+              type="checkbox"
+              [checked]="item.value.quantity > 0"
+              (change)="order.toggleDish(item.value.dish)"
+            />
+            <img
+              class="dish-img"
+              [src]="item.value.dish.image"
+              *ngIf="item.value.dish.image"
+            />
+            <div class="dish-info">
+              <div class="dish-info__title">{{ item.value.dish.name }}</div>
+              <span class="dish-info__desc">{{
+                item.value.dish.description
+              }}</span>
+            </div>
+          </label>
 
-        <div class="dish-item__right">
-          <span class="dish-price">{{
-            item.value.dish.price | currency : "BRL"
-          }}</span>
+          <div class="dish-item__right">
+            <span class="dish-price">{{
+              item.value.dish.price | currency : "BRL"
+            }}</span>
 
-          <div class="quantity-controls" *ngIf="item.value.quantity > 0">
-            <button
-              class="btn-ghost"
-              type="button"
-              (click)="order.decrement(item.value.dish)">
-              -
-            </button>
-            <span>{{ item.value.quantity }}</span>
-            <button
-              class="btn-ghost"
-              type="button"
-              (click)="order.increment(item.value.dish)">
-              +
-            </button>
+            <div class="quantity-controls" *ngIf="item.value.quantity > 0">
+              <button
+                class="btn-ghost"
+                type="button"
+                (click)="order.decrement(item.value.dish)"
+              >
+                -
+              </button>
+              <span>{{ item.value.quantity }}</span>
+              <button
+                class="btn-ghost"
+                type="button"
+                (click)="order.increment(item.value.dish)"
+              >
+                +
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -71,7 +83,6 @@
           order.totalPrice() | currency : "BRL"
         }}</strong>
       </div>
-
       <button class="btn-filled" type="submit" [disabled]="!order.hasItems()">
         Finalizar Pedido
       </button>

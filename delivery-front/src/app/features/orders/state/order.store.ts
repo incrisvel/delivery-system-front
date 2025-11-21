@@ -18,15 +18,7 @@ export class OrderStore {
         this.selectedItems().reduce((sum, item) => sum + item.total, 0)
     );
 
-    stars = computed(() => {
-        const rating = this.establishment()?.rating ?? 0;
-        return Array.from({ length: 5 }, (_, i) => {
-            const index = i + 1;
-            if (rating >= index) return { icon: 'star', filled: true };
-            if (rating >= index - 0.5) return { icon: 'star_half', filled: true };
-            return { icon: 'star', filled: false }; // usa star vazia
-        });
-    });
+    stars = computed(() => getStars(this.establishment()?.rating ?? 0));
 
     hasItems = computed(() =>
         this.selectedItems().length > 0
