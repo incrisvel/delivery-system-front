@@ -3,5 +3,5 @@ import { ORDER_ROUTES } from './features/orders/order.routes';
 
 export const routes: Routes = [
     ...ORDER_ROUTES,
-    { path: '', redirectTo: 'order-order', pathMatch: 'full' },
+    { path: '', redirectTo: 'orders', pathMatch: 'full' },
 ];

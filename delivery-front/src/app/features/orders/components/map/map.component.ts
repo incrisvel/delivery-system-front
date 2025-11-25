@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { EstablishmentService } from '../../services/establishment.service';
 import { Establishment } from '../../models';
 import { getMarkerIconOptions } from '../../utils/rating.utils';
+import { ClientStore } from '../../state/client.store';
 
 @Component({
   selector: 'app-map',
@@ -26,7 +27,7 @@ export class MapComponent {
   isLoading = false;
   loadingMessage = 'Carregando sua localização...';
 
-  constructor(private establishmentService: EstablishmentService) {}
+  constructor(private establishmentService: EstablishmentService, private store: ClientStore) {}
 
   ngAfterViewInit(): void {
     this.initMap();
@@ -48,6 +49,10 @@ export class MapComponent {
       (pos) => {
         const { latitude, longitude } = pos.coords;
         this.userLocation = { latitude, longitude };
+        
+        this.store.clientLatitude.set(latitude)
+        this.store.clientLongitude.set(longitude)
+
         this.showUserLocation(latitude, longitude);
         this.fetchEstablishments(latitude, longitude);
         this.isLoading = false;
@@ -77,33 +82,8 @@ export class MapComponent {
     this.establishmentService
       .getEstablishmentsNearby(lat, lon)
       .subscribe((establishments) => {
-        console.log(establishments);
         this.renderEstablishmentMarkers(establishments);
       });
-    // const establishments: Establishment[] = [
-    //   {
-    //     "id": 1,
-    //     "address": "R. Antônio da Veiga, 213 - Victor Konder, Blumenau - SC, 89012-500",
-    //     "name": "Nonno Nico Restobar",
-    //     "latitude": -26.9069749,
-    //     "longitude": -49.0783579
-    //   },
-    //   {
-    //     "id": 2,
-    //     "address": "R. Antônio da Veiga - Victor Konder, Blumenau - SC, 89010-971",
-    //     "name": "Bibinha",
-    //     "latitude": -26.9056207,
-    //     "longitude": -49.0766823
-    //   },
-    //   {
-    //     "id": 3,
-    //     "address": "R. Bahia, 5683 - Salto Weissbach, Blumenau - SC, 89032-001",
-    //     "name": "The Family's Burger & Pizza",
-    //     "latitude": -26.8937333,
-    //     "longitude": -49.1300611
-    //   }
-    // ];
-    // this.renderEstablishmentMarkers(establishments)
   }
 
   private renderEstablishmentMarkers(establishments: Establishment[]) {
