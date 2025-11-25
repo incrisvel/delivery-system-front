@@ -1,0 +1,72 @@
+#map {
+  height: 100vh;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 200px;
+  background: var(--bg-color);
+  padding: 16px;
+  border-radius: var(--card-radius);
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid var(--text-color-20);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+::ng-deep .leaflet-control-zoom {
+  background: transparent;
+  border-radius: 8px;
+  border: none !important;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) !important;
+
+  .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out {
+    border-color: var(--text-color-10) !important;
+    background: var(--bg-color) !important;
+    span { font-weight: 400 !important; }
+  }
+
+  .leaflet-control-zoom-in {
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+  }
+
+  .leaflet-control-zoom-out {
+    border-bottom-left-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+  }
+}
+
+::ng-deep .leaflet-popup-content-wrapper,
+::ng-deep .leaflet-popup-tip {
+  background: var(--bg-color) !important;
+}

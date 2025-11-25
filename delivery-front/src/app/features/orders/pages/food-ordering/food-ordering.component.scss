@@ -1,0 +1,21 @@
+.map-wrapper {
+  position: relative;
+}
+
+.overlay {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.icon-credits {
+  background: var(--bg-color);
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 9999;
+}

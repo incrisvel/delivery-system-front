@@ -1,0 +1,138 @@
+.order-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 500px;
+  max-width: 500px;
+  max-height: 90vh;
+  background: var(--bg-color);
+  border-radius: var(--card-radius);
+  padding: 16px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.establishment-img {
+  height: 120px;
+  width: 100%;
+  object-fit: cover;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.establishment {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  h2 {
+    margin-block: 8px;
+  }
+
+  &__address {
+    display: flex;
+    align-items: center;
+    opacity: 0.5;
+    gap: 8px;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+
+.star {
+  font-size: 22px;
+  color: #ffaa00;
+
+  &.empty {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24 !important;
+  }
+
+  &.filled {
+    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24 !important;
+  }
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+.dishes {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+.dish-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  border-radius: 8px;
+
+  .dish-img {
+    height: 60px;
+    width: 60px;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .dish-info {
+    width: 80%;
+
+    &__title {
+      font-weight: bold;
+    }
+
+    &__desc {
+      font-size: 14px;
+      padding-top: 8px;
+      opacity: 0.5;
+    }
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+
+    .dish-price {
+      font-size: 18px;
+    }
+
+    .quantity-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      .btn-ghost {
+        width: 30px;
+        height: 30px;
+        padding: 0;
+        justify-content: center;
+        font-size: 18px;
+      }
+    }
+  }
+}
+
+.dish-item label {
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
